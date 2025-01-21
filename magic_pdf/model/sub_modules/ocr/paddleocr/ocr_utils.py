@@ -328,9 +328,11 @@ class ONNXModelSingleton:
 
 def onnx_model_init(key):
 
-    import importlib.resources
+    from distutils.sysconfig import get_python_lib
+    import os.path
 
-    resource_path = importlib.resources.path('rapidocr_onnxruntime.models','')
+    site_packages_path = get_python_lib()
+    resource_path = os.path.join(site_packages_path, 'rapidocr_onnxruntime', 'models')
 
     onnx_model = None
     additional_ocr_params = {
